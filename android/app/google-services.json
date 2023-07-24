@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "132482740316",
+    "project_id": "psugo-10025",
+    "storage_bucket": "psugo-10025.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:132482740316:android:db79e1b4210e6431967699",
+        "android_client_info": {
+          "package_name": "com.example.psugo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "132482740316-h3aipu55au529t4at3sh91tsd37lcisa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvEFM4sp2xw0f6bNna6eKvlBqWRFm9rUo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "132482740316-h3aipu55au529t4at3sh91tsd37lcisa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
