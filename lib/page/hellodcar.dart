@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:psugo/page/transaction.dart';
 
 class HelloDcar extends StatefulWidget {
   const HelloDcar({super.key});
@@ -27,7 +28,7 @@ class _HelloDcarState extends State<HelloDcar> {
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 Text(
                   'List Sharing car today',
@@ -57,14 +58,14 @@ class _HelloDcarState extends State<HelloDcar> {
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            'Student',
+                            'Student-CoE',
                             style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.blue),
                           ),
                           SizedBox(
-                            height: 10,
+                            height: 15,
                           ),
                           Text(
                             'Start: โรงอาหาร - Finish: ร้านขายของชำ',
@@ -77,6 +78,26 @@ class _HelloDcarState extends State<HelloDcar> {
                             height: 10,
                           ),
                           Text(
+                            'Date: 12/06/2023',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'Time: 14.20 น.',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
                             'Price: 50 Bath',
                             style: TextStyle(
                               fontSize: 18,
@@ -84,7 +105,20 @@ class _HelloDcarState extends State<HelloDcar> {
                             ),
                           ),
                           SizedBox(
-                            height: 20,
+                            height: 10,
+                          ),
+                          FloatingActionButton(
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Transaction(),
+                                ));
+                              },
+                              child: Text(
+                                'Book',
+                                style: TextStyle(fontSize: 20),
+                              )),
+                          SizedBox(
+                            height: 15,
                           ),
                         ],
                       ),
