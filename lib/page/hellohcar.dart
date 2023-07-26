@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:psugo/page/addsharing.dart';
+import 'package:psugo/page/profile_h.dart';
 
 class HelloHcar extends StatefulWidget {
   const HelloHcar({super.key});
@@ -164,7 +165,15 @@ class _HelloHcarState extends State<HelloHcar> {
           items: [
             Icon(Icons.chat_bubble_outline_outlined),
             Icon(Icons.home_rounded),
-            Icon(Icons.settings)
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => ProfileH()));
+              },
+            ),
+            Icon(
+              Icons.settings,
+            ),
           ],
         ));
   }

@@ -6,8 +6,7 @@ import 'package:psugo/augmentation/dialog.dart';
 import 'package:psugo/page/login.dart';
 
 class Hcar extends StatefulWidget {
-  final String vehicle;
-  const Hcar({Key? key, required this.vehicle}) : super(key: key);
+  const Hcar({Key? key}) : super(key: key);
 
   @override
   State<Hcar> createState() => _HcarState();
@@ -15,7 +14,6 @@ class Hcar extends StatefulWidget {
 
 class _HcarState extends State<Hcar> {
   String? vehicle;
-  String? selectedValue = 'Student';
   String? fullname, email, password, phone, factuly, bank;
   @override
   Widget build(BuildContext context) {
@@ -200,17 +198,6 @@ class _HcarState extends State<Hcar> {
                         ),
                         vehicleRadio(),
                         SizedBox(
-                          height: 30,
-                        ),
-                        Text(
-                          'Who you are?',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        selectDropdown(),
-                        SizedBox(
                           height: 20,
                         ),
                         Text(
@@ -248,33 +235,6 @@ class _HcarState extends State<Hcar> {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Container selectDropdown() {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: DropdownButtonFormField<String>(
-        value: selectedValue,
-        items: [
-          DropdownMenuItem(
-            child: Text('Student'),
-            value: 'Student',
-          ),
-          DropdownMenuItem(
-            child: Text('Personel'),
-            value: 'Personel',
-          )
-        ],
-        onChanged: (String? value) {
-          setState(() {
-            selectedValue = value;
-          });
-        },
       ),
     );
   }
@@ -338,7 +298,6 @@ class _HcarState extends State<Hcar> {
               (phone?.isEmpty ?? true) ||
               (factuly?.isEmpty ?? true) ||
               (vehicle?.isEmpty ?? true) ||
-              (selectedValue?.isEmpty ?? true) ||
               (bank?.isEmpty ?? true)) {
             print('have space.');
             normalDialog(context, 'Have Space.', 'Please Fill');
@@ -381,8 +340,8 @@ class _HcarState extends State<Hcar> {
                     TextButton(
                         onPressed: () {
                           Navigator.of(context).pop();
-                          Navigator.of(context).push(
-                              MaterialPageRoute(builder: (context) => Login()));
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, '/helloHcar', (route) => false);
                         },
                         child: Text('OK'))
                   ],
@@ -407,7 +366,6 @@ class _HcarState extends State<Hcar> {
         'phone': phone,
         'faculty': factuly,
         'vehicle': vehicle,
-        'selectvalue': selectedValue,
         'bank': bank,
       },
     );

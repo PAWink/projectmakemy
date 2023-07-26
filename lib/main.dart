@@ -4,6 +4,7 @@ import 'package:psugo/page/addsharing.dart';
 import 'package:psugo/page/choose.dart';
 import 'package:psugo/page/hellodcar.dart';
 import 'package:psugo/page/hellohcar.dart';
+import 'package:psugo/page/login.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HelloDcar(),
+      home: const Choose(),
     );
   }
 }

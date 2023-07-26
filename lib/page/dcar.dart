@@ -6,8 +6,7 @@ import 'package:psugo/augmentation/dialog.dart';
 import 'package:psugo/page/login.dart';
 
 class Dcar extends StatefulWidget {
-  final String vehicle;
-  const Dcar({super.key, required this.vehicle});
+  const Dcar({super.key});
 
   @override
   State<Dcar> createState() => _DcarState();
@@ -268,8 +267,8 @@ class _DcarState extends State<Dcar> {
                     TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
-                        Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => Login()));
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                            '/helloDcar', (route) => false);
                       },
                       child: Text('OK'),
                     )
