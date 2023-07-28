@@ -14,7 +14,7 @@ void main() async {
   runApp(const MyApp());
 }
 
-String initRout = '/homenavi_d';
+String initRout = '/choose';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

@@ -340,7 +340,7 @@ class _HcarState extends State<Hcar> {
                         onPressed: () {
                           Navigator.of(context).pop();
                           Navigator.pushNamedAndRemoveUntil(
-                              context, '/hellohcar', (route) => false);
+                              context, '/homenavi_h', (route) => false);
                         },
                         child: Text('OK'))
                   ],
