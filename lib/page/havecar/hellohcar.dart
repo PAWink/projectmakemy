@@ -1,7 +1,6 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:psugo/page/addsharing.dart';
-import 'package:psugo/page/profile_h.dart';
+import 'package:psugo/page/havecar/postsharing.dart';
+import 'package:psugo/page/havecar/yourpost.dart';
 
 class HelloHcar extends StatefulWidget {
   const HelloHcar({super.key});
@@ -11,6 +10,7 @@ class HelloHcar extends StatefulWidget {
 }
 
 class _HelloHcarState extends State<HelloHcar> {
+  //size
   late double screenWidth;
   late double screenHeight;
   @override
@@ -18,8 +18,9 @@ class _HelloHcarState extends State<HelloHcar> {
     screenWidth = MediaQuery.of(context).size.width;
     screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-        body: SafeArea(
-            child: Column(
+      body: SafeArea(
+          child: SingleChildScrollView(
+        child: Column(
           children: [
             Container(
               margin: EdgeInsets.only(top: 25),
@@ -32,7 +33,7 @@ class _HelloHcarState extends State<HelloHcar> {
                   ),
                   Image(
                     image: AssetImage('images/psugo.png'),
-                    width: screenWidth * 0.2,
+                    width: screenWidth * 0.1,
                   ),
                 ],
               ),
@@ -61,14 +62,14 @@ class _HelloHcarState extends State<HelloHcar> {
             Container(
               padding: EdgeInsets.only(right: 110),
               child: Text(
-                'Don\'t sharing car today',
+                'Nobody go with you',
                 style: TextStyle(
                   fontSize: 15,
                 ),
               ),
             ),
             SizedBox(
-              height: 15,
+              height: 30,
             ),
             Container(
               padding: EdgeInsets.only(right: 250),
@@ -77,10 +78,13 @@ class _HelloHcarState extends State<HelloHcar> {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
+            SizedBox(
+              height: 10,
+            ),
             GestureDetector(
               onTap: () {
                 Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => Addsharing()));
+                    MaterialPageRoute(builder: (context) => Postsharing()));
               },
               child: Container(
                 height: 70,
@@ -97,7 +101,7 @@ class _HelloHcarState extends State<HelloHcar> {
                         width: 15,
                       ),
                       Text(
-                        'Add sharing car',
+                        'Post sharing car',
                         style: TextStyle(fontSize: 18),
                       ),
                     ],
@@ -106,7 +110,10 @@ class _HelloHcarState extends State<HelloHcar> {
               ),
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => YourPost()));
+              },
               child: Container(
                 height: 70,
                 margin: EdgeInsets.only(left: 40, right: 40), //ระยะห่างจากขอบจอ
@@ -130,51 +137,10 @@ class _HelloHcarState extends State<HelloHcar> {
                 ),
               ),
             ),
-            GestureDetector(
-              onTap: () {},
-              child: Container(
-                height: 70,
-                margin: EdgeInsets.only(left: 40, right: 40), //ระยะห่างจากขอบจอ
-                child: Card(
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.nature_people_rounded,
-                        color: Colors.blue,
-                        size: 50,
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        'Go with you',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
           ],
-        )),
-        backgroundColor: Color.fromARGB(255, 204, 232, 254),
-        bottomNavigationBar: CurvedNavigationBar(
-          backgroundColor: Color.fromARGB(255, 204, 232, 254),
-          color: Colors.blue,
-          animationDuration: Duration(milliseconds: 300),
-          items: [
-            Icon(Icons.chat_bubble_outline_outlined),
-            Icon(Icons.home_rounded),
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => ProfileH()));
-              },
-            ),
-            Icon(
-              Icons.settings,
-            ),
-          ],
-        ));
+        ),
+      )),
+      backgroundColor: Color.fromARGB(255, 204, 232, 254),
+    );
   }
 }

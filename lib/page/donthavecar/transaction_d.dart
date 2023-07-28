@@ -1,27 +1,24 @@
 import 'package:flutter/material.dart';
 
-class Transaction extends StatefulWidget {
-  const Transaction({super.key});
+class TransactionD extends StatefulWidget {
+  const TransactionD({super.key});
 
   @override
-  State<Transaction> createState() => _TransactionState();
+  State<TransactionD> createState() => _TransactionDState();
 }
 
-class _TransactionState extends State<Transaction> {
+class _TransactionDState extends State<TransactionD> {
   late double screenWidth;
   late double screenHeight;
   @override
   Widget build(BuildContext context) {
     screenHeight = MediaQuery.of(context).size.height;
     screenWidth = MediaQuery.of(context).size.width;
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(
-                height: screenHeight * 0.05,
-              ),
               Container(
                 padding: EdgeInsets.only(left: 40),
                 child: Column(
@@ -122,7 +119,7 @@ class _TransactionState extends State<Transaction> {
                 ),
               ),
               SizedBox(
-                height: 15,
+                height: 5,
               ),
               ElevatedButton(
                 onPressed: () {},
@@ -133,6 +130,7 @@ class _TransactionState extends State<Transaction> {
           ),
         ),
       ),
+      backgroundColor: Color.fromARGB(255, 204, 232, 254),
     );
   }
 }

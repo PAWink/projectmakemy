@@ -268,7 +268,7 @@ class _DcarState extends State<Dcar> {
                       onPressed: () {
                         Navigator.of(context).pop();
                         Navigator.of(context).pushNamedAndRemoveUntil(
-                            '/helloDcar', (route) => false);
+                            '/hellodcar', (route) => false);
                       },
                       child: Text('OK'),
                     )

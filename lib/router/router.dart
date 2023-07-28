@@ -1,24 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:psugo/page/addsharing.dart';
+import 'package:psugo/page/donthavecar/homenavi_d.dart';
+import 'package:psugo/page/havecar/postsharing.dart';
 import 'package:psugo/page/choose.dart';
+import 'package:psugo/page/havecar/confirm_t.dart';
 import 'package:psugo/page/dcar.dart';
-import 'package:psugo/page/editsharingcar.dart';
+import 'package:psugo/page/havecar/editsharingcar.dart';
 import 'package:psugo/page/hcar.dart';
-import 'package:psugo/page/hellodcar.dart';
-import 'package:psugo/page/hellohcar.dart';
+import 'package:psugo/page/donthavecar/hellodcar.dart';
+import 'package:psugo/page/havecar/hellohcar.dart';
+import 'package:psugo/page/havecar/homenavi_h.dart';
 import 'package:psugo/page/login.dart';
-import 'package:psugo/page/transaction.dart';
-import 'package:psugo/page/yourpost.dart';
+import 'package:psugo/page/havecar/profile_h.dart';
+import 'package:psugo/page/donthavecar/transaction_d.dart';
+import 'package:psugo/page/havecar/yourpost.dart';
 
 final Map<String, WidgetBuilder> map = {
-  '/helloHcar': (BuildContext context) => HelloHcar(),
-  '/helloDcar': (BuildContext context) => HelloDcar(),
+  '/hellohcar': (BuildContext context) => HelloHcar(),
+  '/hellodcar': (BuildContext context) => HelloDcar(),
   '/choose': (BuildContext context) => Choose(),
-  '/dCar': (BuildContext context) => Dcar(),
-  '/addSharingCar': (BuildContext context) => Addsharing(),
-  '/editSharingCar': (BuildContext context) => EditSharingCar(),
-  '/hCar': (BuildContext context) => Hcar(),
+  '/dcar': (BuildContext context) => Dcar(),
+  '/addsharingcar': (BuildContext context) => Postsharing(),
+  '/editsharingcar': (BuildContext context) => EditSharingCar(),
+  '/hsar': (BuildContext context) => Hcar(),
   '/login': (BuildContext context) => Login(),
-  '/tranSaction': (BuildContext context) => Transaction(),
-  '/yourPost': (BuildContext context) => YourPost(),
+  '/transaction': (BuildContext context) => TransactionD(),
+  '/yourpost': (BuildContext context) => YourPost(),
+  '/profile_h': (BuildContext context) => ProfileH(),
+  '/confirm_t': (BuildContext context) => ConfirmT(),
+  '/homenavi_h': (BuildContext context) => HomeNaviH(),
+  '/homenavi_d': (BuildContext context) => HomeNaviD(),
 };

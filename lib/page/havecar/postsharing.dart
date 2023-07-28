@@ -1,16 +1,16 @@
 import 'package:day_night_time_picker/day_night_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:psugo/page/yourpost.dart';
+import 'package:psugo/page/havecar/yourpost.dart';
 
-class Addsharing extends StatefulWidget {
-  const Addsharing({super.key});
+class Postsharing extends StatefulWidget {
+  const Postsharing({super.key});
 
   @override
-  State<Addsharing> createState() => _AddsharingState();
+  State<Postsharing> createState() => _PostsharingState();
 }
 
-class _AddsharingState extends State<Addsharing> {
+class _PostsharingState extends State<Postsharing> {
   //time
   Time _time = Time(hour: 11, minute: 30, second: 20);
   void onTimeChanged(Time newTime) {
@@ -57,7 +57,7 @@ class _AddsharingState extends State<Addsharing> {
               ),
             ),
             Text(
-              'Add sharing car',
+              'Post sharing car',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
             SizedBox(
