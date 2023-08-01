@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "438015412795",
-    "project_id": "psugo-12ca4",
-    "storage_bucket": "psugo-12ca4.appspot.com"
+    "project_number": "132482740316",
+    "project_id": "psugo-10025",
+    "storage_bucket": "psugo-10025.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:438015412795:android:70996ccb213e1ede992a1e",
+        "mobilesdk_app_id": "1:132482740316:android:2fbc87e4aa371c7b967699",
         "android_client_info": {
           "package_name": "com.example.psugo"
         }
       },
       "oauth_client": [
         {
-          "client_id": "438015412795-rjfqhfsgi5m1bdo0hlrbs8eai3ss67gf.apps.googleusercontent.com",
+          "client_id": "132482740316-h3aipu55au529t4at3sh91tsd37lcisa.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBA7Wlbv2Y0rkvnJWrBN9hmzu0AqC1dFzg"
+          "current_key": "AIzaSyAvEFM4sp2xw0f6bNna6eKvlBqWRFm9rUo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "438015412795-rjfqhfsgi5m1bdo0hlrbs8eai3ss67gf.apps.googleusercontent.com",
+              "client_id": "132482740316-h3aipu55au529t4at3sh91tsd37lcisa.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -250,7 +250,6 @@ class _DcarState extends State<Dcar> {
           email: email!,
           password: password!,
         );
-        //   String? uid = value.name.uid;
         print('Create Account Success');
         showDialog(
             context: context,

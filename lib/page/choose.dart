@@ -3,7 +3,7 @@ import 'package:psugo/page/dcar.dart';
 import 'package:psugo/page/hcar.dart';
 
 class Choose extends StatefulWidget {
-  const Choose({super.key});
+  const Choose({Key? key}) : super(key: key);
 
   @override
   State<Choose> createState() => _ChooseState();

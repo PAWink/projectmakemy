@@ -14,7 +14,7 @@ void main() async {
   runApp(const MyApp());
 }
 
-String initRout = '/choose';
+String initRout = '/login';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

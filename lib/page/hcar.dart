@@ -317,7 +317,7 @@ class _HcarState extends State<Hcar> {
     );
   }
 
-  Future<Null> createAccountandInsertInformation() async {
+  Future<void> createAccountandInsertInformation() async {
     await Firebase.initializeApp().then((value) async {
       print('## Firebase initial Success');
       try {
