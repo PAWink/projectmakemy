@@ -1,3 +1,7 @@
+import 'dart:math';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:psugo/page/havecar/postsharing.dart';
 import 'package:psugo/page/havecar/yourpost.dart';
@@ -13,6 +17,8 @@ class _HelloHcarState extends State<HelloHcar> {
   //size
   late double screenWidth;
   late double screenHeight;
+  //get display name
+
   @override
   Widget build(BuildContext context) {
     screenWidth = MediaQuery.of(context).size.width;
@@ -28,7 +34,7 @@ class _HelloHcarState extends State<HelloHcar> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    'Hello, THIS IS NAME FB',
+                    'Hello, ',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Image(

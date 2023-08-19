@@ -5,7 +5,7 @@ import 'package:psugo/page/havecar/hellohcar.dart';
 import 'package:psugo/page/havecar/profile_h.dart';
 
 class HomeNaviH extends StatefulWidget {
-  const HomeNaviH({super.key});
+  const HomeNaviH({super.key, required id});
 
   @override
   State<HomeNaviH> createState() => _HomeNaviHState();

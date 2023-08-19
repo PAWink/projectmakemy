@@ -102,12 +102,16 @@ class _ChooseState extends State<Choose> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const Dcar()));
+                                    builder: (context) => const Dcar(
+                                          choosevehicle: 'don\'t have car',
+                                        )));
                           } else if (vehicle == 'have car') {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: ((context) => const Hcar())));
+                                    builder: ((context) => const Hcar(
+                                          choosevehicle: 'have car',
+                                        ))));
                           }
                         },
                         style: ElevatedButton.styleFrom(

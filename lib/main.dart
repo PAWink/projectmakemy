@@ -1,17 +1,20 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:psugo/page/havecar/postsharing.dart';
-import 'package:psugo/page/choose.dart';
-import 'package:psugo/page/hcar.dart';
-import 'package:psugo/page/donthavecar/hellodcar.dart';
-import 'package:psugo/page/havecar/hellohcar.dart';
-import 'package:psugo/page/login.dart';
+import 'package:psugo/page/model/user_model.dart';
 import 'package:psugo/router/router.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(MyApp());
+  /*FirebaseAuth.instance.authStateChanges().listen((User? user) {
+    if (user == null) {
+      runApp(MyApp());
+      print('User is currently signed out!');
+    }
+  });*/
 }
 
 String initRout = '/login';

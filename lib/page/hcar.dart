@@ -4,9 +4,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:psugo/augmentation/dialog.dart';
 import 'package:psugo/page/login.dart';
+import 'package:psugo/page/model/user_model.dart';
 
 class Hcar extends StatefulWidget {
-  const Hcar({Key? key}) : super(key: key);
+  final String? choosevehicle;
+  const Hcar({Key? key, required this.choosevehicle}) : super(key: key);
 
   @override
   State<Hcar> createState() => _HcarState();
@@ -14,7 +16,8 @@ class Hcar extends StatefulWidget {
 
 class _HcarState extends State<Hcar> {
   String? vehicle;
-  String? fullname, email, password, phone, factuly, bank;
+  String? fullname, email, password, phone, faculty, bank;
+  String choosevehicle = 'have car';
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -127,6 +130,7 @@ class _HcarState extends State<Hcar> {
                                         borderRadius:
                                             BorderRadius.circular(20)),
                                     child: TextFormField(
+                                      obscureText: true,
                                       onChanged: (value) =>
                                           password = value.trim(),
                                       decoration: InputDecoration(
@@ -184,7 +188,7 @@ class _HcarState extends State<Hcar> {
                                             BorderRadius.circular(20)),
                                     child: TextFormField(
                                       onChanged: (value) =>
-                                          factuly = value.trim(),
+                                          faculty = value.trim(),
                                       decoration: InputDecoration(
                                           hintText: 'Faculty',
                                           enabledBorder: OutlineInputBorder(
@@ -295,14 +299,14 @@ class _HcarState extends State<Hcar> {
               (email?.isEmpty ?? true) ||
               (password?.isEmpty ?? true) ||
               (phone?.isEmpty ?? true) ||
-              (factuly?.isEmpty ?? true) ||
+              (faculty?.isEmpty ?? true) ||
               (vehicle?.isEmpty ?? true) ||
               (bank?.isEmpty ?? true)) {
             print('have space.');
             normalDialog(context, 'Have Space.', 'Please Fill');
           } else {
-            createAccountandInsertInformation();
-            _create();
+            createAccountandInsertInformation(context);
+            //_create();
           }
         },
         child: Text(
@@ -317,56 +321,67 @@ class _HcarState extends State<Hcar> {
     );
   }
 
-  Future<void> createAccountandInsertInformation() async {
-    await Firebase.initializeApp().then((value) async {
-      print('## Firebase initial Success');
-      try {
-        await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(email: email!, password: password!);
-        print('Create Account Success');
+  Future<void> createAccountandInsertInformation(BuildContext context) async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email!, password: password!);
+
+      if (userCredential.user != null) {
+        User user = userCredential.user!;
+
+        await user.updateDisplayName(fullname);
+        print('Update profile success and uid = ${user.uid}');
+
+        UserModel model = UserModel(
+          uid: user.uid,
+          choosevehicle: choosevehicle,
+          fullname: fullname!,
+          email: email!,
+          password: password!,
+          phone: phone!,
+          faculty: faculty!,
+          vehicle: '',
+          bank: '',
+        );
+
+        Map<String, dynamic> data = model.toMap();
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uid)
+            .set(data);
+
         showDialog(
-            context: context,
-            builder: (context) => SimpleDialog(
-                  title: ListTile(
-                    leading: Icon(
-                      Icons.ac_unit,
-                      color: Colors.green,
-                    ),
-                    title: Text('Success'),
-                    subtitle: Text('Create Account success'),
-                  ),
-                  children: [
-                    TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                          Navigator.pushNamedAndRemoveUntil(
-                              context, '/homenavi_h', (route) => false);
-                        },
-                        child: Text('OK'))
-                  ],
-                ));
-      } catch (error) {
-        print('FirebaseAuthException: error.toString');
-        normalDialog(context, 'Error', error.toString());
+          context: context,
+          builder: (context) => SimpleDialog(
+            title: ListTile(
+              leading: Icon(
+                Icons.ac_unit,
+                color: Colors.green,
+              ),
+              title: Text('Success'),
+              subtitle: Text('Create Account success'),
+            ),
+            children: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/homenavi_h', (route) => false);
+                },
+                child: Text('OK'),
+              ),
+            ],
+          ),
+        );
+      } else {
+        // Handle the case where user is null
+        print('User is null after createUserWithEmailAndPassword');
       }
-    });
-  }
+    } catch (error) {
+      print('FirebaseAuthException: $error');
+      normalDialog(context, 'Error', error.toString());
+    }
 
-  Future _create() async {
-    final carCollection = FirebaseFirestore.instance.collection('cars');
-
-    final carDoc = carCollection.doc();
-
-    await carDoc.set(
-      {
-        'fullname': fullname,
-        'email': email,
-        'password': password,
-        'phone': phone,
-        'faculty': factuly,
-        'vehicle': vehicle,
-        'bank': bank,
-      },
-    );
+    ;
   }
 }

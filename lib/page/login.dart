@@ -4,6 +4,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:psugo/augmentation/dialog.dart';
 import 'package:psugo/page/choose.dart';
+import 'package:psugo/page/donthavecar/homenavi_d.dart';
+import 'package:psugo/page/havecar/homenavi_h.dart';
+import 'package:psugo/page/home.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -89,6 +92,7 @@ class _LoginState extends State<Login> {
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(20)),
                                 child: TextFormField(
+                                  obscureText: true,
                                   onChanged: (value) => password = value.trim(),
                                   decoration: InputDecoration(
                                       hintText: 'Password',
@@ -163,27 +167,18 @@ class _LoginState extends State<Login> {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email!, password: password!);
-
-      String? userEmail = userCredential.user!.email;
-      QuerySnapshot querySnapshotCollection1 = await FirebaseFirestore.instance
-          .collection('cars')
-          .where('email', isEqualTo: userEmail)
-          .get();
-
-      QuerySnapshot querySnapshotCollection2 = await FirebaseFirestore.instance
-          .collection('users')
-          .where('email', isEqualTo: userEmail)
-          .get();
-
-      if (querySnapshotCollection1.docs.isNotEmpty) {
-        Navigator.pushNamed(context, '/homenavi_h');
-      } else if (querySnapshotCollection2.docs.isNotEmpty) {
-        Navigator.pushNamed(context, '/homenavi_d');
-      } else {
-        print('Email not found in any collection');
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Home(),
+        ),
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
       }
-    } catch (e) {
-      print('Error logging in: $e');
     }
   }
 }

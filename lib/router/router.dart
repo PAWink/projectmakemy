@@ -18,15 +18,19 @@ final Map<String, WidgetBuilder> map = {
   '/hellohcar': (BuildContext context) => HelloHcar(),
   '/hellodcar': (BuildContext context) => HelloDcar(),
   '/choose': (BuildContext context) => Choose(),
-  '/dcar': (BuildContext context) => Dcar(),
+  '/dcar': (BuildContext context) => Dcar(
+        choosevehicle: 'don\'t have car',
+      ),
   '/addsharingcar': (BuildContext context) => Postsharing(),
   '/editsharingcar': (BuildContext context) => EditSharingCar(),
-  '/hsar': (BuildContext context) => Hcar(),
+  '/hsar': (BuildContext context) => Hcar(
+        choosevehicle: 'have car',
+      ),
   '/login': (BuildContext context) => Login(),
   '/transaction': (BuildContext context) => TransactionD(),
   '/yourpost': (BuildContext context) => YourPost(),
   '/profile_h': (BuildContext context) => ProfileH(),
   '/confirm_t': (BuildContext context) => ConfirmT(),
-  '/homenavi_h': (BuildContext context) => HomeNaviH(),
-  '/homenavi_d': (BuildContext context) => HomeNaviD(),
+  '/homenavi_h': (BuildContext context) => HomeNaviH(id: ''),
+  '/homenavi_d': (BuildContext context) => HomeNaviD(id: ''),
 };

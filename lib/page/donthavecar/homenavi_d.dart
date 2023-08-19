@@ -6,7 +6,7 @@ import 'package:psugo/page/donthavecar/profile_d.dart';
 import 'package:psugo/page/donthavecar/transaction_d.dart';
 
 class HomeNaviD extends StatefulWidget {
-  const HomeNaviD({super.key});
+  const HomeNaviD({super.key, required id});
 
   @override
   State<HomeNaviD> createState() => _HomeNaviDState();

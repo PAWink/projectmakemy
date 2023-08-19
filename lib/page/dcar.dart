@@ -4,9 +4,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:psugo/augmentation/dialog.dart';
 import 'package:psugo/page/login.dart';
+import 'package:psugo/page/model/user_model.dart';
 
 class Dcar extends StatefulWidget {
-  const Dcar({super.key});
+  final String choosevehicle;
+  const Dcar({Key? key, required this.choosevehicle}) : super(key: key);
 
   @override
   State<Dcar> createState() => _DcarState();
@@ -14,6 +16,7 @@ class Dcar extends StatefulWidget {
 
 class _DcarState extends State<Dcar> {
   String? fullname, email, password, phone, faculty;
+  String choosevehicle = 'don\'t have car';
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -123,6 +126,7 @@ class _DcarState extends State<Dcar> {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(20)),
                           child: TextFormField(
+                            obscureText: true,
                             onChanged: (value) => password = value.trim(),
                             decoration: InputDecoration(
                                 hintText: 'Password',
@@ -227,8 +231,8 @@ class _DcarState extends State<Dcar> {
           print('have space.');
           normalDialog(context, 'Have Space.', 'Please Fill');
         } else {
-          createAccountandInsertInformation();
-          _create();
+          createAccountandInsertInformation(context);
+          //_create();
         }
       },
       child: Text(
@@ -242,57 +246,67 @@ class _DcarState extends State<Dcar> {
     );
   }
 
-  Future<void> createAccountandInsertInformation() async {
-    await Firebase.initializeApp().then((value) async {
-      print('## Firebase initial Success');
-      try {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+  Future<void> createAccountandInsertInformation(BuildContext context) async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email!, password: password!);
+
+      if (userCredential.user != null) {
+        User user = userCredential.user!;
+
+        await user.updateDisplayName(fullname);
+        print('Update profile success and uid = ${user.uid}');
+
+        UserModel model = UserModel(
+          uid: user.uid,
+          choosevehicle: choosevehicle,
+          fullname: fullname!,
           email: email!,
           password: password!,
+          phone: phone!,
+          faculty: faculty!,
+          vehicle: '',
+          bank: '',
         );
-        print('Create Account Success');
+
+        Map<String, dynamic> data = model.toMap();
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uid)
+            .set(data);
+
         showDialog(
-            context: context,
-            builder: (context) => SimpleDialog(
-                  title: ListTile(
-                    leading: Icon(
-                      Icons.api_rounded,
-                      color: Colors.green,
-                    ),
-                    title: Text('Success'),
-                    subtitle: Text('Create Account success'),
-                  ),
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                            '/homenavi_d', (route) => false);
-                      },
-                      child: Text('OK'),
-                    )
-                  ],
-                ));
-      } catch (error) {
-        print('FirebaseAuthException: error.toString');
-        normalDialog(context, 'Error', error.toString());
+          context: context,
+          builder: (context) => SimpleDialog(
+            title: ListTile(
+              leading: Icon(
+                Icons.ac_unit,
+                color: Colors.green,
+              ),
+              title: Text('Success'),
+              subtitle: Text('Create Account success'),
+            ),
+            children: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/homenavi_d', (route) => false);
+                },
+                child: Text('OK'),
+              ),
+            ],
+          ),
+        );
+      } else {
+        // Handle the case where user is null
+        print('User is null after createUserWithEmailAndPassword');
       }
-    });
-  }
+    } catch (error) {
+      print('FirebaseAuthException: $error');
+      normalDialog(context, 'Error', error.toString());
+    }
 
-  Future _create() async {
-    final userCollection = FirebaseFirestore.instance.collection('users');
-
-    final userDoc = userCollection.doc();
-
-    await userDoc.set(
-      {
-        'fullname': fullname,
-        'email': email,
-        'password': password,
-        'phone': phone,
-        'faculty': faculty,
-      },
-    );
+    ;
   }
 }
