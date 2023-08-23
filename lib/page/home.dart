@@ -35,6 +35,7 @@ class _controState extends State<contro> {
   UserModel loggedInUser = UserModel();
   User? user = FirebaseAuth.instance.currentUser;
   @override
+  //method ที่ใช้บ่อยคือ initState ที่เอาไว้ กำหนดค่าเริ่มต้น
   void initState() {
     super.initState();
     FirebaseFirestore.instance
@@ -42,8 +43,9 @@ class _controState extends State<contro> {
         .doc(user!.uid)
         .get()
         .then((value) {
-      this.loggedInUser = UserModel.fromMap(value.data());
+      loggedInUser = UserModel.fromMap(value.data());
     }).whenComplete(() {
+      //setState คือ การ rebuild ใหม่เพื่ออัพเดท Widget
       setState(() {
         emaill = loggedInUser.email.toString();
         choosevehicle = loggedInUser.choosevehicle.toString();
