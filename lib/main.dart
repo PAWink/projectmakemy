@@ -17,7 +17,7 @@ Future<void> main() async {
   });*/
 }
 
-String initRout = '/login';
+String initRout = '/homenavi_h';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

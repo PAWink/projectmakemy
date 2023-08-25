@@ -117,8 +117,14 @@ class _HelloHcarState extends State<HelloHcar> {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => YourPost()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => YourPost(
+                          date: '',
+                          time: '',
+                          start: '',
+                          finish: '',
+                          price: '',
+                        )));
               },
               child: Container(
                 height: 70,

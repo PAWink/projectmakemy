@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:day_night_time_picker/day_night_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class EditSharingCar extends StatefulWidget {
-  const EditSharingCar({super.key});
+  const EditSharingCar(
+      {super.key, required QueryDocumentSnapshot<Object?> docid});
 
   @override
   State<EditSharingCar> createState() => _EditSharingCarState();
